@@ -4,19 +4,23 @@
 This is the basic template for OpenGL and C development.
 
 ## **Getting started:**
+
 **0. Prerequesites:**
-- [git](https://git-scm.com/)
-- [cmake](https://cmake.org/)
+- [**git**](https://git-scm.com/)
+- [**cmake**](https://cmake.org/)
+
 **1. Clone this repository:**
 ```console
 $ git clone https://github.com/itsYakub/OpenGL-Template.git
 $ cd OpenGL-Template/
 ```
+
 **2. Create a build directory:**
 ```console
 $ mkdir bin/
 $ cd bin/
 ```
+
 **3. Build the project using CMake:**
 ```console
 $ cmake ..
