@@ -1,3 +1,41 @@
+# ------------------------------------------------------------------------------
+# OpenGL Template
+# https://github.com/itsYakub/OpenGL-Template.git
+# ------------------------------------------------------------------------------
+# Author:
+# https://github.com/itsYakub
+# ------------------------------------------------------------------------------
+# Naming convention:
+# - *.c - source file extension
+# - *.h - header file extension
+# - src/ - source files directory
+# - include/ - header files direcotry
+# - bin/ - binary / final exec. directory
+# ------------------------------------------------------------------------------
+# LICENCE (MIT):
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.
+# ------------------------------------------------------------------------------
+
+# --------------------
+# Section: CMake setup
+# --------------------
+
 cmake_minimum_required(VERSION 3.11)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -7,7 +45,15 @@ set(CMAKE_C_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+# ----------------------
+# Section: Fetch Content
+# ----------------------
+
 include(FetchContent)
+
+# -----------------
+# Sub-Section: GLAD
+# -----------------
 
 FetchContent_Declare(
 	glad
@@ -18,6 +64,10 @@ FetchContent_Declare(
 set(GLAD_PROFILE "core"	CACHE STRING "OpenGL profile")
 set(GLAD_GENERATOR "c"	CACHE STRING "Language to generate the binding for")
 
+# -----------------
+# Sub-Section: SDL2
+# -----------------
+
 FetchContent_Declare(
     SDL2
     GIT_REPOSITORY https://github.com/libsdl-org/SDL
@@ -26,13 +76,21 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glad SDL2)
 
+# ----------------------
+# Section: Project setup
+# ----------------------
+
 project(
 	opengl_template
 	VERSION 1.0
-	DESCRIPTION # ...
-	HOMEPAGE_URL # ...
+	DESCRIPTION "Basic template for OpenGL development in C"
+	HOMEPAGE_URL "https://github.com/itsYakub/OpenGL-Template.git"
 	LANGUAGES C CXX
 )
+
+# --------------------
+# Sub-Section: Sources
+# --------------------
 
 set(
 	SOURCES
@@ -40,10 +98,18 @@ set(
 	# ...
 )
 
+# ---------------------
+# Sub-Section: Includes
+# ---------------------
+
 set(
 	INCLUDE_DIRECTORIES
 	# ...
 )
+
+# ----------------------
+# Sub-Section: Libraries
+# ----------------------
 
 set(
 	LINK_LIBRARIES
@@ -51,6 +117,10 @@ set(
 	SDL2
 	# ...
 )
+
+# ---------------------
+# Section: Target setup
+# ---------------------
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIRECTORIES})
@@ -69,7 +139,7 @@ if (LINUX)
     # LINUX: Setting the target executable's suffix (for linux: *.out).
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".out")
 
-endif()
+endif(LINUX)
 
 if (WIN32)
 
@@ -84,7 +154,7 @@ if (WIN32)
     # WINDOWS: Setting the target executable's suffix (for Win32: *.exe).
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".exe")
 
-endif()
+endif(WIN32)
 
 if (APPLE)
 
@@ -103,4 +173,4 @@ if (APPLE)
     # APPLE: Setting the target executable's suffix (for MacOS: *.app).
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".app")
 
-endif()
+endif(APPLE)

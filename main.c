@@ -1,6 +1,4 @@
 #include "SDL2/SDL.h"
-#include "SDL_events.h"
-#include "SDL_video.h"
 #include "glad/glad.h"
 
 int main(int argc, const char* argv[]) {
@@ -23,6 +21,7 @@ int main(int argc, const char* argv[]) {
 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 	SDL_GL_MakeCurrent(window, context);
+	SDL_GL_SetSwapInterval(1);
 
 	gladLoadGL();
 
