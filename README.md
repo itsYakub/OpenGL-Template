@@ -31,8 +31,7 @@ $ cmake --build .
 
 ## **Dependencies:**
 This project works thanks to these libraries:
-- [**glad**](https://github.com/Dav1dde/glad): Multi-Language Vulkan/GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs.
-- [**SDL2**](https://github.com/libsdl-org/SDL): Simple Directmedia Layer.
+- [**SFML**](https://github.com/SFML/SFML): Simple and Fast Multimedia Library.
 
 ## **Licence:**
 By default, this template is under the [**MIT LICENCE**](./LICENCE). You can change it to whatever you want!
