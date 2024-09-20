@@ -65,16 +65,16 @@ set(GLAD_PROFILE "core"	CACHE STRING "OpenGL profile")
 set(GLAD_GENERATOR "c"	CACHE STRING "Language to generate the binding for")
 
 # -----------------
-# Sub-Section: SDL2
+# Sub-Section: GLFW
 # -----------------
 
 FetchContent_Declare(
-    SDL2
-    GIT_REPOSITORY https://github.com/libsdl-org/SDL
-    GIT_TAG release-2.30.7
+    glfw
+    GIT_REPOSITORY https://github.com/glfw/glfw.git
+    GIT_TAG 3.4
 )
 
-FetchContent_MakeAvailable(glad SDL2)
+FetchContent_MakeAvailable(glad glfw)
 
 # ----------------------
 # Section: Project setup
@@ -114,7 +114,7 @@ set(
 set(
 	LINK_LIBRARIES
 	glad
-	SDL2
+	glfw
 	# ...
 )
 
