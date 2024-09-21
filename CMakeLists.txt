@@ -40,6 +40,8 @@ cmake_minimum_required(VERSION 3.11)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
@@ -50,16 +52,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 include(FetchContent)
 
 # -----------------
-# Sub-Section: SFML
+# Sub-Section: GLAD
 # -----------------
 
 FetchContent_Declare(
-    sfml
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.0
+	glad
+	GIT_REPOSITORY https://github.com/Dav1dde/glad.git
+	GIT_TAG v0.1.36
 )
 
-FetchContent_MakeAvailable(sfml)
+set(GLAD_PROFILE "core"	CACHE STRING "OpenGL profile")
+set(GLAD_GENERATOR "c"	CACHE STRING "Language to generate the binding for")
+
+# -----------------
+# Sub-Section: SDL2
+# -----------------
+
+FetchContent_Declare(
+    SDL2
+    GIT_REPOSITORY https://github.com/libsdl-org/SDL
+    GIT_TAG release-2.30.7
+)
+
+FetchContent_MakeAvailable(glad SDL2)
 
 # ----------------------
 # Section: Project setup
@@ -68,9 +83,9 @@ FetchContent_MakeAvailable(sfml)
 project(
 	opengl_template
 	VERSION 1.0
-	DESCRIPTION "Basic template for OpenGL development in C++"
+	DESCRIPTION "Basic template for OpenGL development in C"
 	HOMEPAGE_URL "https://github.com/itsYakub/OpenGL-Template.git"
-	LANGUAGES CXX
+	LANGUAGES C CXX
 )
 
 # --------------------
@@ -79,7 +94,7 @@ project(
 
 set(
 	SOURCES
-	${CMAKE_SOURCE_DIR}/main.cpp
+	${CMAKE_SOURCE_DIR}/main.c
 	# ...
 )
 
@@ -98,11 +113,8 @@ set(
 
 set(
 	LINK_LIBRARIES
-    sfml-audio
-    sfml-graphics
-    sfml-system
-    sfml-window
-    GL
+	glad
+	SDL2
 	# ...
 )
 
